@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+
+
+
+/* page connectée */
+
+:root {
+  --royal-blue: #2563eb;
+}
+
+.bg-royal-blue {
+  background-color: var(--royal-blue);
+}
+
+.text-royal-blue {
+  color: var(--royal-blue);
+}
