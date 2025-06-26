@@ -14,9 +14,9 @@ export default function LayoutProvider({
 
   return (
     <>
-      {!isAuthPage && <Navbar />}
+      <Navbar />
       <main className="min-h-screen">{children}</main>
-      {!isAuthPage && <Footer />}
+      <Footer />
     </>
   );
 }
