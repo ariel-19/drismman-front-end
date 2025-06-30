@@ -92,15 +92,15 @@ export default function DrivingSchoolCard({
     };
 
     return (
-      <div className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col">
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full">
         {/* Image (optionnelle) */}
         {image && (
-          <div className="w-full h-40 overflow-hidden relative">
+          <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 relative flex-shrink-0">
             <Image 
               src={image} 
               alt={name} 
-              className="object-cover"
               fill
+              className="object-cover rounded-full border-4 border-blue-100"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>

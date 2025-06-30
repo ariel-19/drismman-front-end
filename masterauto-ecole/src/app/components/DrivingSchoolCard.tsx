@@ -108,17 +108,31 @@ const DrivingSchoolCard = ({ school }: { school: DrivingSchool }) => {
   };
 
   return (
-    <div className="w-full p-4">
-      <div className="bg-white rounded-t-2xl shadow-xl overflow-hidden max-w-[2000px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left Column */}
-          <div className="lg:border-r lg:border-gray-100">
-            {/* Header Section with Carousel */}
+    <div className="bg-white rounded-lg shadow-md p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left Column */}
+        <div className="lg:border-r lg:border-gray-100">
+          {/* Header Section with Carousel */}
+          <div 
+            className="relative h-[32rem] overflow-hidden group"
+            onMouseEnter={() => setIsAutoScrolling(false)}
+            onMouseLeave={() => setIsAutoScrolling(true)}
+          >
             <div 
-              className="relative h-[32rem] overflow-hidden group"
-              onMouseEnter={() => setIsAutoScrolling(false)}
-              onMouseLeave={() => setIsAutoScrolling(true)}
+              className="flex transition-transform duration-500 ease-in-out h-full"
+              style={{ 
+                transform: `translateX(-${currentImageIndex * 100}%)`,
+              }}
             >
+              {school.images.map((image, index) => (
+                <div key={index} className="relative w-full h-full flex-shrink-0">
+                  <Image
+                    src={image}
+                    alt={`${school.name} - Image ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority={index === 0}
               <div 
                 className="flex transition-transform duration-500 ease-in-out h-full"
                 style={{ 

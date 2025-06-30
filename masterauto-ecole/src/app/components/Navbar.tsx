@@ -47,19 +47,19 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex flex-wrap justify-between h-16 items-center">
           {/* Logo et barre de recherche à gauche */}
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-4 w-full md:w-auto">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <span className="text-2xl font-bold text-blue-600">Drisman</span>
             </Link>
             {/* Barre de recherche */}
-            <form onSubmit={handleSearch} className="flex-1 max-w-md">
+            <form onSubmit={handleSearch} className="flex-1 max-w-xs md:max-w-md w-full md:w-auto mt-2 md:mt-0">
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Recherche"
-                  className="w-full px-4 py-2 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:outline-none"
+                  className="w-full px-4 py-2 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-sm"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -97,7 +97,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-4">
               <Link
                 href="/auth?form=login"
-                className="inline-flex items-center text-gray-600 hover:text-gray-900 px-4 py-2 rounded-full text-sm font-medium transition-colors border-2 border-gray-300 hover:border-gray-400"
+                className="inline-flex items-center text-gray-600 hover:text-gray-900 px-4 py-2 rounded-full text-sm font-medium border-2 border-gray-300 hover:border-gray-400"
               >
                 <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
@@ -117,79 +117,69 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="-mr-2 flex items-center md:hidden">
+          <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-600 transition"
+              aria-label="Menu"
             >
-              <span className="sr-only">Open main menu</span>
-              {!isMenuOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              )}
+              {/* Hamburger icon */}
+              <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          {/* Barre de recherche mobile */}
-          <div className="px-4 pt-2 pb-3">
-            <form onSubmit={handleSearch} className="relative">
-              <input
-                type="text"
-                placeholder="Rechercher une auto-école..."
-                className="w-full px-4 py-2 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:outline-none"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="absolute right-0 top-0 mt-2 mr-2 text-gray-400 hover:text-gray-600"
-              >
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </button>
-            </form>
-          </div>
-
-          <div className="pt-2 pb-3 space-y-1">
-            {navLinks.map((link) => (
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <div className="md:hidden mt-2 bg-white rounded-lg shadow-lg p-4 space-y-4">
+            <div className="flex flex-col space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`flex items-center px-3 py-2 text-base font-medium rounded ${isActive(link.href)
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-700 hover:bg-gray-100'
+                    } transition-colors duration-200`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.icon}
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            <div className="flex flex-col space-y-2 pt-2 border-t">
               <Link
-                key={link.href}
-                href={link.href}
-                className={`flex items-center mx-3 px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 border-2 border-gray-300 hover:border-gray-400 rounded-full transition-colors duration-200`}
+                href="/auth?form=login"
+                className="flex items-center text-gray-600 hover:text-gray-900 px-4 py-2 rounded-full text-base font-medium border-2 border-gray-300 hover:border-gray-400"
+                onClick={() => setIsMenuOpen(false)}
               >
+                <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+                Connexion
+              </Link>
+              <Link
+                href="/auth?form=signup"
+                className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-full text-base font-medium hover:bg-blue-700 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                </svg>
+                Inscription
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
                 {link.icon}
                 {link.label}
               </Link>
