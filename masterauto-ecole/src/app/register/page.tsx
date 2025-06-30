@@ -219,10 +219,22 @@ export default function RegisterPage() {
                         id="phone"
                         name="phone"
                         value={formData.phone}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          // N'accepte que les chiffres
+                          const onlyNums = e.target.value.replace(/[^0-9]/g, '');
+                          setFormData(prev => ({ ...prev, phone: onlyNums }));
+                        }}
+                        pattern="[0-9]{8,15}"
+                        inputMode="numeric"
+                        maxLength={15}
+                        minLength={8}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
                       />
+                      {/* Message d'erreur si lettres */}
+                      {formData.phone && /[^0-9]/.test(formData.phone) && (
+                        <span className="text-red-500 text-xs">Le numéro de téléphone ne doit contenir que des chiffres.</span>
+                      )}
                     </div>
                     
                     {!formData.isParent && (
