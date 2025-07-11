@@ -92,10 +92,10 @@ export default function DrivingSchoolCard({
     };
 
     return (
-      <div className="bg-white rounded-lg shadow-md p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full">
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6 flex flex-col h-full justify-between min-h-[40rem] w-full">
         {/* Image (optionnelle) */}
         {image && (
-          <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 relative flex-shrink-0">
+          <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 relative flex-shrink-0 mx-auto mb-4">
             <Image 
               src={image} 
               alt={name} 
@@ -105,39 +105,35 @@ export default function DrivingSchoolCard({
             />
           </div>
         )}
-        
-        {/* Contenu */}
-        <div className="p-5 flex-grow flex flex-col">
-          <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-1">{name}</h3>
-          
+        {/* Contenu principal */}
+        <div className="flex-1 flex flex-col">
+          <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-1 text-center">{name}</h3>
           {/* Rating */}
-          <div className="flex items-center mb-3">
+          <div className="flex items-center mb-3 justify-center">
             <div className="flex">{renderStars()}</div>
             <span className="ml-2 text-sm text-gray-600">
               {rating.toFixed(1)} ({reviewCount} avis)
             </span>
           </div>
-          
           {/* Adresse */}
-          <div className="text-gray-600 mb-4 flex-grow">
+          <div className="text-gray-600 mb-4 flex-grow text-center">
             <p className="line-clamp-2">{address}, {city}</p>
           </div>
-          
-          {/* Boutons d'action */}
-          <div className="flex space-x-2">
-            <button
-              onClick={() => onViewDetails ? onViewDetails(id) : router.push(`/driving-school/${id}`)}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-md transition-colors text-center text-sm"
-            >
-              Voir les détails
-            </button>
-            <button
-              onClick={() => router.push(`/register?school=${id}`)}
-              className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-3 rounded-md transition-colors text-center text-sm"
-            >
-              S'inscrire
-            </button>
-          </div>
+        </div>
+        {/* Boutons d'action en bas */}
+        <div className="flex flex-row gap-2 mt-auto">
+          <button
+            onClick={() => onViewDetails ? onViewDetails(id) : router.push(`/driving-school/${id}`)}
+            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-md transition-colors text-center text-sm"
+          >
+            Voir les détails
+          </button>
+          <button
+            onClick={() => router.push(`/register?school=${id}`)}
+            className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-3 rounded-md transition-colors text-center text-sm"
+          >
+            S'inscrire
+          </button>
         </div>
       </div>
     );

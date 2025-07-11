@@ -1,0 +1,45 @@
+# Backend
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/mvnw
+backend/mvnw.cmd
+backend/.settings/
+backend/.classpath
+backend/.project
+backend/.factorypath
+backend/HELP.md
+
+# Frontend
+masterauto-ecole/node_modules/
+masterauto-ecole/.next/
+masterauto-ecole/out/
+masterauto-ecole/.DS_Store
+masterauto-ecole/npm-debug.log*
+masterauto-ecole/yarn-debug.log*
+masterauto-ecole/yarn-error.log*
+masterauto-ecole/.env.local
+masterauto-ecole/.env.development.local
+masterauto-ecole/.env.test.local
+masterauto-ecole/.env.production.local
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

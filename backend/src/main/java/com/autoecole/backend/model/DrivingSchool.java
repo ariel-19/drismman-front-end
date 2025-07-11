@@ -3,6 +3,8 @@ package com.autoecole.backend.model;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +17,7 @@ public class DrivingSchool {
     private String description;
     private String address;
     private String city;
+    @JsonProperty("phone")
     private String phone;
     private String email;
     private List<String> images;
